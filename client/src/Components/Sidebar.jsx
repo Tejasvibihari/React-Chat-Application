@@ -1,7 +1,21 @@
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
+import { io } from "socket.io-client";
+import { useEffect } from 'react';
 
 export default function Sidebar() {
+
+    const socket = io("http://localhost:3000");
+
+    useEffect(() => {
+        socket.on("connect", () => {
+            console.log(socket.id);
+            console.log("connetcted");
+        });
+    }, []);
+
+
+
     return (
         <div className="flex h-screen">
             <div className="w-1/4 bg-gray-200">
