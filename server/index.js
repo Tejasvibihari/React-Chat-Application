@@ -5,11 +5,6 @@ import { Server } from "socket.io";
 import { createServer } from 'node:http';
 import cors from 'cors';
 
-
-
-
-
-
 const app = express();
 
 const port = 3000;
@@ -43,6 +38,10 @@ mongoose.connect('mongodb://localhost:27017/chattingDb', { useNewUrlParser: true
 io.on('connection', (socket) => {
     console.log("User Connected");
     console.log(socket.id);
+    socket.on("message", (data) => {
+        console.log(data);
+        io.emit("recive-message", data);
+    });
 });
 
 
